@@ -8,7 +8,7 @@ class Menu : public sf::RectangleShape
 public:
 	Menu(float posX, float posY);
 
-	void testMouse(int mouseX, int mouseY, bool onMenu, int preset);
+	void testMouse(int mouseX, int mouseY, bool onMenu, int preset, sf::RenderWindow& window);
 	void display(sf::RenderWindow& window);
 
 private:

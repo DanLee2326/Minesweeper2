@@ -70,7 +70,7 @@ Menu::Menu(float posX, float posY)
 	}
 }
 
-void Menu::testMouse(int mouseX, int mouseY, bool onMenu, int preset)
+void Menu::testMouse(int mouseX, int mouseY, bool onMenu, int preset, sf::RenderWindow& window)
 {
 	bool clickedOnBox = false;
 	int whichBox = 0;
@@ -135,7 +135,7 @@ void Menu::testMouse(int mouseX, int mouseY, bool onMenu, int preset)
 			//close window
 			if (whichScreen == 0)
 			{
-				
+				window.close();
 			}
 			break;
 		case 3:
@@ -144,6 +144,8 @@ void Menu::testMouse(int mouseX, int mouseY, bool onMenu, int preset)
 			{
 				whichScreen = 3;
 			}
+			preset = 1;
+			onMenu = false;
 			break;
 		case 4:
 			//start with 16x16
@@ -151,6 +153,8 @@ void Menu::testMouse(int mouseX, int mouseY, bool onMenu, int preset)
 			{
 				whichScreen = 4;
 			}
+			preset = 2;
+			onMenu = false;
 			break;
 		case 5:
 			//start with 24x24
@@ -158,6 +162,8 @@ void Menu::testMouse(int mouseX, int mouseY, bool onMenu, int preset)
 			{
 				whichScreen = 5;
 			}
+			preset = 3;
+			onMenu = false;
 			break;
 		case 6:
 			//go back to main menu

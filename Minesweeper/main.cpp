@@ -32,7 +32,7 @@ int main() {
     Menu select(window.getSize().x, window.getSize().y);
 
     //board size variable
-    int preset = 2;
+    int preset;
     int mineAmount;
     int boardSize;
     switch (preset) {
@@ -51,8 +51,8 @@ int main() {
         break;
     }
 
-    int cellWidth;
-    int cellHeight;
+    int cellWidth = window.getSize().x / boardSize;
+    int cellHeight = (window.getSize().y - 50) / boardSize;
     Board grid(boardSize, "number");
     Board coverGrid(boardSize, "cover");
     vector<Flag*> flags;
@@ -90,7 +90,7 @@ int main() {
         //menu loop
         while (onMenu) {
 
-            select.testMouse(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y, onMenu, preset);
+            select.testMouse(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y, onMenu, preset, window);
             select.display(window);
             if (onMenu == false) {
 
@@ -230,7 +230,8 @@ int main() {
         text.setPosition(0.f, 0.f);
         window.draw(text);*/
         //window.draw(time);
-
+        select.testMouse(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y, onMenu, preset, window);
+        select.display(window);
         window.display();
 
     }
