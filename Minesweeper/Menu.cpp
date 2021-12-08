@@ -204,5 +204,57 @@ void Menu::display(sf::RenderWindow& window)
 	else if (whichScreen == 2)
 	{
 		window.draw(options[7]);
+
+		sf::Text j;
+
+		j.setFont(style);
+		j.setFillColor(sf::Color::White);
+		j.setCharacterSize(35);
+		j.setStyle(sf::Text::Style::Bold);
+
+		j.setString("Highscores");
+		j.setPosition(200, 60);
+		window.draw(j);
+
+		j.setCharacterSize(25);
+		vector<int> a = scores.getScores9();
+		j.setString("9x9");
+		j.setPosition(150, 110);
+		window.draw(j);
+		for (int i = 0; i < a.size(); i++)
+		{
+			j.setString(std::to_string(a.at(i)));
+			j.setPosition(150, 150 + (40 * i));
+			window.draw(j);
+		}
+
+		a = scores.getScores16();
+		j.setString("16x16");
+		j.setPosition(250, 110);
+		window.draw(j);
+		for (int i = 0; i < a.size(); i++)
+		{
+			j.setString(std::to_string(a.at(i)));
+			j.setPosition(250, 150 + (40 * i));
+			window.draw(j);
+		}
+
+		a = scores.getScores24();
+		j.setString("24x24");
+		j.setPosition(350, 110);
+		window.draw(j);
+		for (int i = 0; i < a.size(); i++)
+		{
+			j.setString(std::to_string(a.at(i)));
+			j.setPosition(350, 150 + (40 * i));
+			window.draw(j);
+		}
+
+
 	}
+}
+
+void Menu::addScore2(int newScore, int boardType)
+{
+	scores.addScore(newScore, boardType);
 }

@@ -153,6 +153,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="NumCell.cpp" />
+    <ClCompile Include="Scores.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +164,13 @@
     <ClInclude Include="functions.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="NumCell.h" />
+    <ClInclude Include="Scores.h" />
     <ClInclude Include="Timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="16x16.txt" />
+    <Text Include="24x24.txt" />
+    <Text Include="9x9.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

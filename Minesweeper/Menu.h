@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Scores.h"
 
 class Menu : public sf::RectangleShape
 {
@@ -10,6 +11,7 @@ public:
 
 	void testMouse(int mouseX, int mouseY, bool onMenu, int preset, sf::RenderWindow& window);
 	void display(sf::RenderWindow& window);
+	void addScore2(int newScore, int boardType);
 
 private:
 	sf::Text options[8];
@@ -17,4 +19,5 @@ private:
 	sf::RectangleShape boxes[8];
 
 	int whichScreen;
+	Scores scores;
 };

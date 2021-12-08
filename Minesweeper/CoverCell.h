@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Cell.h"
 
 class CoverCell : public Cell {
