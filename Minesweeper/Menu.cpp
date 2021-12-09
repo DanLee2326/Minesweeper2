@@ -7,6 +7,8 @@ Menu::Menu(float posX, float posY)
 		std::cout << "Load Error!" << std::endl;
 	}
 
+	texture.loadFromFile("background (1).png");
+
 	whichScreen = 0;
 
 	for (int i = 0; i < 8; i++) 
@@ -56,15 +58,15 @@ Menu::Menu(float posX, float posY)
 			break;
 		case 6:
 			options[i].setString("Back");
-			options[i].setPosition(10, 10);
+			options[i].setPosition(5, 5);
 			boxes[i].setSize(sf::Vector2f(60, 30));
-			boxes[i].setPosition(10, 10);
+			boxes[i].setPosition(5, 5);
 			break;
 		case 7:
 			options[i].setString("Back");
-			options[i].setPosition(10, 10);
+			options[i].setPosition(5, 5);
 			boxes[i].setSize(sf::Vector2f(60, 30));
-			boxes[i].setPosition(10, 10);
+			boxes[i].setPosition(5, 5);
 			break;
 		}
 	}
@@ -103,13 +105,27 @@ void Menu::testMouse(int mouseX, int mouseY, bool onMenu, int preset, sf::Render
 			else //glow up
 			{
 				options[i].setCharacterSize(30);
-				options[i].setColor(sf::Color::Red);
+				options[i].setColor(sf::Color::Blue);
 			}
 		}
 		else //normal
 		{
+			
 			options[i].setCharacterSize(25);
-			options[i].setColor(sf::Color::White);
+			options[i].setColor(sf::Color::Black);
+			
+			/*if (i < 6)
+			{
+				options[i].setCharacterSize(25);
+				options[i].setColor(sf::Color::Black);
+				
+			}
+			if (i == 6 || i == 7)
+			{
+				options[i].setCharacterSize(25);
+				options[i].setColor(sf::Color::White);
+			}*/
+			
 		}
 	}
 
@@ -185,72 +201,105 @@ void Menu::testMouse(int mouseX, int mouseY, bool onMenu, int preset, sf::Render
 
 void Menu::display(sf::RenderWindow& window)
 {
+	sf::Sprite background(texture);
+	sf::Text j;
+	j.setFont(style);
+	j.setFillColor(sf::Color::White);
+	j.setCharacterSize(50);
+	j.setStyle(sf::Text::Style::Bold);
+
 	if (whichScreen == 0) 
 	{
+		window.draw(background);
+		j.setString("Minesweeper");
+		j.setPosition(135, 150);
+		j.setOutlineColor(sf::Color::Black);
+		j.setOutlineThickness(2);
+		window.draw(j);
 		for (int i = 0; i < 3; i++)
 		{
+			
 			window.draw(options[i]);
 		}
 	}
 	else if (whichScreen == 1) 
 	{
-
+		window.draw(background);
+		j.setString("Select the board size:");
+		j.setPosition(110, 150);
+		j.setCharacterSize(35);
+		j.setOutlineColor(sf::Color::Black);
+		j.setOutlineThickness(2);
+		window.draw(j);
 		for (int i = 3; i < 7; i++)
 		{
+			
 			window.draw(options[i]);
 		}
 
 	}
 	else if (whichScreen == 2)
 	{
+		window.draw(background);
 		window.draw(options[7]);
 
-		sf::Text j;
-
-		j.setFont(style);
-		j.setFillColor(sf::Color::White);
 		j.setCharacterSize(35);
-		j.setStyle(sf::Text::Style::Bold);
-
+		
 		j.setString("Highscores");
-		j.setPosition(200, 60);
+		j.setPosition(193, 55);
+		j.setOutlineColor(sf::Color::Black);
+		j.setOutlineThickness(2);
+		window.draw(j);
+		j.setString("---------------------------------");
+		j.setPosition(85, 85);
+		j.setOutlineColor(sf::Color::Black);
+		j.setOutlineThickness(2);
 		window.draw(j);
 
 		j.setCharacterSize(25);
+
 		vector<int> a = scores.getScores9();
+		j.setFillColor(sf::Color::Black);
 		j.setString("9x9");
-		j.setPosition(150, 110);
+		j.setPosition(96, 125);
+		j.setOutlineThickness(0);
 		window.draw(j);
+
 		for (int i = 0; i < a.size(); i++)
 		{
 			j.setString(std::to_string(a.at(i)));
-			j.setPosition(150, 150 + (40 * i));
+			j.setPosition(101, 175 + (40 * i));
+			j.setFillColor(sf::Color::Red);
 			window.draw(j);
 		}
 
 		a = scores.getScores16();
+		j.setFillColor(sf::Color::Black);
 		j.setString("16x16");
-		j.setPosition(250, 110);
+		j.setPosition(238, 125);
 		window.draw(j);
+
 		for (int i = 0; i < a.size(); i++)
 		{
 			j.setString(std::to_string(a.at(i)));
-			j.setPosition(250, 150 + (40 * i));
+			j.setPosition(258, 175 + (40 * i));
+			j.setFillColor(sf::Color::Cyan);
 			window.draw(j);
 		}
 
 		a = scores.getScores24();
+		j.setFillColor(sf::Color::Black);
 		j.setString("24x24");
-		j.setPosition(350, 110);
+		j.setPosition(400, 125);
 		window.draw(j);
+
 		for (int i = 0; i < a.size(); i++)
 		{
 			j.setString(std::to_string(a.at(i)));
-			j.setPosition(350, 150 + (40 * i));
+			j.setPosition(420, 175 + (40 * i));
+			j.setFillColor(sf::Color::Green);
 			window.draw(j);
 		}
-
-
 	}
 }
 

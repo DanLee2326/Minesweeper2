@@ -30,9 +30,8 @@ int main()
     titleBar.setPosition(0, 0);*/
 
     Menu select(window.getSize().x, window.getSize().y);
-    //Timer timer(window.getSize().x, window.getSize().y);
-    //select.addScore2(9, 1);
-  
+    //select.addScore2(64, 1);
+
     //board size variable
     int preset = 1;
     int mineAmount;
@@ -62,21 +61,10 @@ int main()
 
     bool clicked = false;
     bool lost = false;
-
-    /*
-    const unsigned int seconds = static_cast<unsigned int>(clock.getElapsedTime().asSeconds());*/
    
     sf::Clock clock;
     sf::Text text;
     sf::Font font;
-
-    
-
-   /* font.loadFromFile("arial.ttf");
-    const unsigned int seconds = static_cast<unsigned int>(clock.getElapsedTime().asSeconds());
-    std::string time = std::to_string(seconds);*/
-
-    
 
     bool onMenu = true;
 
@@ -85,12 +73,12 @@ int main()
         font.loadFromFile("arial.ttf");
         const unsigned int seconds = static_cast<unsigned int>(clock.getElapsedTime().asSeconds());
         std::string time = std::to_string(seconds);
-        //std::cout << time << std::endl;
         text.setFont(font);
         text.setString(time);
         text.setColor(sf::Color::White);
         text.setCharacterSize(25);
         text.setPosition(window.getSize().x / 2, 10);
+
         //menu loop
         /*while (onMenu) {
 
@@ -134,7 +122,6 @@ int main()
         sf::Event evnt;
         while (window.pollEvent(evnt)) 
         {
-            
             switch (evnt.type) 
             {
             case sf::Event::Closed:
@@ -145,7 +132,6 @@ int main()
                 if (sf::Mouse::getPosition(window).x < window.getSize().x && sf::Mouse::getPosition(window).x > 0 &&
                     sf::Mouse::getPosition(window).y < window.getSize().y && sf::Mouse::getPosition(window).y > 50) 
                 {
-
                     //finds the cell clicked
                     int cellX = sf::Mouse::getPosition(window).x / cellWidth;
                     int adjustedMouseY = sf::Mouse::getPosition(window).y - 50;
@@ -153,7 +139,6 @@ int main()
 
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) 
                     {
-
                         //first click setup, makes sure you always press an empty space
                         if (clicked == false) {
 
@@ -167,7 +152,6 @@ int main()
                         if ((dynamic_cast <CoverCell*>(coverGrid.getCell(cellX, cellY)))->getCovered() &&
                             !flagAtCell(cellX, cellY, flags)) 
                         {
-
                             (dynamic_cast <CoverCell*>(coverGrid.getCell(cellX, cellY)))->uncover();
                             //if the cell is blank, run the recursion, if it's a mine, lose the game
                             if ((dynamic_cast <NumCell*>(grid.getCell(cellX, cellY)))->getValue() == 0) 
@@ -184,32 +168,24 @@ int main()
                     }
                     else if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) 
                     {
-
                         //flag operations, cellX and cellY are the grid coordinates of the click
                         if ((dynamic_cast <CoverCell*>(coverGrid.getCell(cellX, cellY)))->getCovered() && clicked) 
                         {
-
                             //if there isnt a flag already at the cell, add one
                             if (!flagAtCell(cellX, cellY, flags)) 
                             {
-
                                 flags.push_back(new Flag(cellX * cellWidth, cellY * cellHeight + 50, cellWidth, cellHeight, cellX, cellY));
-
                             }
                             //else, delete the flag already there
                             else 
                             {
-
                                 for (int i = 0; i < flags.size(); i++) 
                                 {
-
                                     if (flags.at(i)->getPositionX() == cellX && flags.at(i)->getPositionY() == cellY) 
                                     {
-
                                         delete flags.at(i);
                                         flags.erase(flags.begin() + i);
                                         break;
-
                                     }
                                 }
                             }
@@ -221,7 +197,7 @@ int main()
 
         //display everything
         window.clear();
-        //Timer timer(window.getSize().x, window.getSize().y);
+        
         //window.draw(titleBar);
         /*for (int i = 0; i < boardSize; i++) 
         {
@@ -241,20 +217,10 @@ int main()
 
         }*/
 
-        /*font.loadFromFile("arial.ttf");
-        const unsigned int seconds = static_cast<unsigned int>(clock.getElapsedTime().asSeconds());
-        std::string time = std::to_string(seconds);
-        text.setFont(font);
-        text.setString(time);
-        text.setColor(sf::Color::White);
-        text.setCharacterSize(25);
-        text.setPosition(window.getSize().x / 2, 10);
-        window.draw(text);*/
+        //window.draw(text);
 
         select.testMouse(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y, onMenu, preset, window);
         select.display(window);
-        //Timer timer(window.getSize().x, window.getSize().y);
-        //timer.display(window);
 
         window.display();
     }

@@ -17,6 +17,7 @@ private:
 	sf::Text options[8];
 	sf::Font style;
 	sf::RectangleShape boxes[8];
+	sf::Texture texture;
 
 	int whichScreen;
 	Scores scores;
